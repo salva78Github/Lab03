@@ -50,8 +50,8 @@ public class Dictionary {
 	 
 	
 	enum Language {
-		ITALIAN("it","rsc/Italian.txt"), 
-		ENGLISH("en", "rsc/English.txt");
+		ITALIAN("Italian","rsc/Italian.txt"), 
+		ENGLISH("English", "rsc/English.txt");
 
 		private String code;
 		private String filePath;
