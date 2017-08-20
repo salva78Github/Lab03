@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public abstract class Dictionary {
+	protected List<String> dictionary = new ArrayList<String>();
 
 	/**
 	 * carica il dizionario da file 
@@ -25,12 +27,18 @@ public abstract class Dictionary {
 				addWord(word);
 			}
 			br.close();
+			
+			Collections.sort(dictionary);
+			
 		} catch (IOException e) {
 			System.out.println("Errore nella lettura del file");
 		}
 	}
 
-	protected abstract void addWord(String word);
+	private void addWord(String word){
+		this.dictionary.add(word);
+	}
+	
 	/*
 	 *  Metodo che esegue il controllo ortografico su testo di input (rapopresentato da una lista di parole), e 
 	 * restituisce una lista di RichWord. Per ogni parola di inputTextList, tale metodo controlla se essa è presente nel dizionario. 
