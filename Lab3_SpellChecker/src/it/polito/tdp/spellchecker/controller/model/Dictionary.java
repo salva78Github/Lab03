@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dictionary {
-	private List<String> dictionary = new ArrayList<String>();
-	
+
+public abstract class Dictionary {
+
 	/**
 	 * carica il dizionario da file 
 	 * 
@@ -22,7 +22,7 @@ public class Dictionary {
 			String word;
 			while ((word = br.readLine()) != null) {
 				// Aggiungere parola alla struttura dati
-				dictionary.add(word);
+				addWord(word);
 			}
 			br.close();
 		} catch (IOException e) {
@@ -30,6 +30,7 @@ public class Dictionary {
 		}
 	}
 
+	protected abstract void addWord(String word);
 	/*
 	 *  Metodo che esegue il controllo ortografico su testo di input (rapopresentato da una lista di parole), e 
 	 * restituisce una lista di RichWord. Per ogni parola di inputTextList, tale metodo controlla se essa è presente nel dizionario. 
@@ -37,9 +38,11 @@ public class Dictionary {
 
 	 */
 	public List<RichWord> spellCheckText(List<String> inputTextList) {
+		// TODO Auto-generated method stub
+		
 		List<RichWord> richWords = new ArrayList<RichWord>();
 		for(String inputWord : inputTextList){
-			boolean isCorrect = this.dictionary.contains(inputWord);
+			boolean isCorrect = checkWord(inputWord);
 			RichWord rw = new RichWord(inputWord);
 			rw.setCorrect(isCorrect);
 			richWords.add(rw);
@@ -47,8 +50,13 @@ public class Dictionary {
 		
 		return richWords;
 	}
-	 
 	
+	
+	
+	protected abstract boolean checkWord(String inputWord);
+
+
+
 	enum Language {
 		ITALIAN("Italian","rsc/Italian.txt"), 
 		ENGLISH("English", "rsc/English.txt");
@@ -79,4 +87,5 @@ public class Dictionary {
 		}
 		
 	}
+
 }

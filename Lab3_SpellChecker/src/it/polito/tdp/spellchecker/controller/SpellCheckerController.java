@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.spellchecker.controller.model.Dictionary;
+import it.polito.tdp.spellchecker.controller.model.DictionaryWithSimpleSearch;
 import it.polito.tdp.spellchecker.controller.model.RichWord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,14 +46,16 @@ public class SpellCheckerController implements Initializable{
 	
 	@FXML
 	void doClearText(ActionEvent event) {
-
+		idTAWords.setText("");
+		idTAWrongWords.setText("");
 	}
 
 	@FXML
 	void doSpellCheck(ActionEvent event) {
 		String language = idCBLanguage.getSelectionModel().getSelectedItem();
 		System.out.println("<doSpellCheck> selected Language: " + language);
-		Dictionary dictionaryInstance = new Dictionary();
+		DictionaryWithSimpleSearch dictionaryInstance = new DictionaryWithSimpleSearch();
+		//DictionaryWithDicotomicaSearch dictionaryInstance = new DictionaryWithDicotomicaSearch();
 		dictionaryInstance.loadDictionary(language);
 		
 		Long startTime = System.nanoTime(); 
